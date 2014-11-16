@@ -119,3 +119,7 @@ wget http://www.winfield.demon.nl/linux/antiword-0.37.tar.gz
 tar xzf antiword-0.37.tar.gz
 cd antiword-0.37
 make all && make global_install
+
+
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
