@@ -12,7 +12,8 @@ echo 'SYSFONT="latarcyrheb-sun16"' >> /etc/sysconfig/i18n
 cd /usr/src
 wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+rpm -Uvh epel-release-6*.rpm
+rpm -Uvh remi-release-6*.rpm 
 sed -i '1,6s/^enabled=0/enabled=1/' /etc/yum.repos.d/remi.repo
 
 yum -y groupinstall "Development Tools"
@@ -28,7 +29,7 @@ yum update -y
 
 #---------apc begin-------------
 printf "\n" | pecl install apc
-printf "extension = apc.so\napc.enabled=1" > /etc/php.d/apc.ini
+printf "extension = apc.so\napc.enabled=1" >> /etc/php.d/apc.ini
 service httpd restart
 #-----------apc end-------------
 
@@ -37,7 +38,7 @@ yum -y install memcached
 /etc/init.d/memcached start
 chkconfig memcached on
 printf "\n" | pecl install  memcache
-printf "extension=memcache.so" > /etc/php.d/memcache.ini
+printf "extension=memcache.so" >> /etc/php.d/memcache.ini
 
 #----------- memcache end ----------
 
@@ -91,7 +92,7 @@ printf "[nginx]\nname=nginx repo\nbaseurl=http://nginx.org/packages/centos/\$rel
 
 yum -y install ImageMagick ImageMagick-devel ImageMagick-perl
 printf "\n" | pecl install imagick
-echo "extension=imagick.so" > /etc/php.d/imagick.ini
+echo "extension=imagick.so" >> /etc/php.d/imagick.ini
 #----------------------
 
 #-----datetime sync-----
