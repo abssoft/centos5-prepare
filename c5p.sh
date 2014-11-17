@@ -29,7 +29,7 @@ yum update -y
 
 #---------apc begin-------------
 printf "\n" | pecl install apc
-printf "extension = apc.so\napc.enabled=1" >> /etc/php.d/apc.ini
+printf "extension = apc.so\napc.enabled=1" > /etc/php.d/apc.ini
 service httpd restart
 #-----------apc end-------------
 
@@ -38,7 +38,7 @@ yum -y install memcached
 /etc/init.d/memcached start
 chkconfig memcached on
 printf "\n" | pecl install  memcache
-printf "extension=memcache.so" >> /etc/php.d/memcache.ini
+printf "extension=memcache.so" > /etc/php.d/memcache.ini
 
 #----------- memcache end ----------
 
@@ -59,12 +59,9 @@ make && make install
 
 #---- add sphinx cronjobs
 
-echo "1 */12 * * *  /usr/bin/pgrep indexer || time /usr/local/sphinx/bin/indexer --all --rotate --config /usr/local/sphinx/etc/sphinx.conf" >> /var/spool/cron/root
+printf "\n@reboot /usr/local/sphinx/bin/searchd --config /usr/local/sphinx/etc/sphinx.conf" >> /var/spool/cron/root
 
-echo "@reboot /usr/local/sphinx/bin/searchd --config /usr/local/sphinx/etc/sphinx.conf" >> /var/spool/cron/root
-
-# */10 * * * *  /usr/bin/pgrep indexer || time /usr/local/sphinx/bin/indexer --rotate --config /usr/local/sphinx/etc/sphinx.conf contacts_delta estate_delta
-
+printf "\n1 */12 * * *  /usr/bin/pgrep indexer || time /usr/local/sphinx/bin/indexer --all --rotate --config /usr/local/sphinx/etc/sphinx.conf" >> /var/spool/cron/root
 
 #--------------sphinx end------------------
 
