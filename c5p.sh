@@ -120,6 +120,6 @@ tar xzf antiword-0.37.tar.gz
 cd antiword-0.37
 make all && make global_install
 
-cd /usr/src
+cd ~
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
