@@ -121,3 +121,7 @@ make all && make global_install
 cd ~
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+
+
+yum install -y monit
+
